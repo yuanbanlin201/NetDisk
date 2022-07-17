@@ -20,7 +20,7 @@ public class DB_Connect {
         String driver = "com.mysql.cj.jdbc.Driver";
         String my_url = "jdbc:mysql://127.0.0.1:3306/mypan?useUnicode=true&characterEncoding=utf-8";
         String my_user = "root";
-        String my_password = "123456";
+        String my_password = "111111";
         Class.forName(driver);
         return DriverManager.getConnection(my_url, my_user, my_password);
     }

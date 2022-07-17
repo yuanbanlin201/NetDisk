@@ -21,14 +21,14 @@ public class RootDeleteUser extends HttpServlet {
             User_Agent_Check uAC = new User_Agent_Check(request.getHeader("user-agent"));
             Referer_Check RC = new Referer_Check(request.getHeader("referer"), "/NetDisk/RSU");
             if (uAC.check()) {
-                response.sendRedirect("403.html");//user_agent
+                response.sendRedirect("403");//user_agent
                 SpiderState = 1;
             } else if (RC.check()) {
-                response.sendRedirect("403.html");//referer
+                response.sendRedirect("403");//referer
                 SpiderState = 1;
             }
         } catch (NullPointerException e) {
-            response.sendRedirect("403.html");
+            response.sendRedirect("403");
             SpiderState = 1;
         }
         if (SpiderState == 0){
@@ -79,7 +79,7 @@ public class RootDeleteUser extends HttpServlet {
                                         }
                                     } else {
                                         System.out.println("删除失败");
-                                        response.sendRedirect("RootDeleteFail.html");
+                                        response.sendRedirect("RootDeleteFail");
                                     }
                                 }
                             } catch (SQLException | ClassNotFoundException e) {
