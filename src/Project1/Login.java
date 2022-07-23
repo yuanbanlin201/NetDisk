@@ -21,16 +21,16 @@ public class Login extends HttpServlet {
             User_Agent_Check uAC = new User_Agent_Check(request.getHeader("user-agent"));
             Referer_Check RC = new Referer_Check(request.getHeader("referer"), "/NetDisk/login.html");
             if (uAC.check()) {
-                response.sendRedirect("403");//user_agent
+                response.sendRedirect("403.html");//user_agent
                 SpiderState = 1;
                 System.out.println("User Agent测试不通过");
             } else if (RC.check()) {
-                response.sendRedirect("403");//referer
+                response.sendRedirect("403.html");//referer
                 SpiderState = 1;
                 System.out.println("Referer测试不通过");
             }
         } catch (NullPointerException e) {
-            response.sendRedirect("403");
+            response.sendRedirect("403.html");
             SpiderState = 1;
         }
         if (SpiderState==0 && request.getParameter("password")!=null && request.getParameter("email")!=null) {
@@ -53,7 +53,7 @@ public class Login extends HttpServlet {
                     //管理员session有效时长设置为默认的关闭浏览器才销毁，不知是否安全
                     session.setAttribute("username", "ROOT");
                     session.setAttribute("email", "ROOT@ROOT");
-                    response.sendRedirect("RootPage"); //重定向至管理员页
+                    response.sendRedirect("RootPage.html"); //重定向至管理员页
                 } else {
                     if (check.check()) {
                         //先验证ip是否被封禁
@@ -169,10 +169,10 @@ public class Login extends HttpServlet {
                                     ps.setString(4, String.valueOf(minute));
                                     int insert = ps.executeUpdate();
                                 }
-                                response.sendRedirect("wrongpassword"); //重定向到密码错误页面，这个页面不归入ErrorPage1.html页面，防止为登录用户获得session
+                                response.sendRedirect("wrongpassword.html"); //重定向到密码错误页面，这个页面不归入ErrorPage1.html页面，防止为登录用户获得session
                             }
-                        } else response.sendRedirect("IPForbidden");
-                    } else response.sendRedirect("wrongusername"); //重定向到账号错误页面，这个页面不归入ErrorPage1.html页面，防止为登录用户获得session
+                        } else response.sendRedirect("IPForbidden.html");
+                    } else response.sendRedirect("wrongusername.html"); //重定向到账号错误页面，这个页面不归入ErrorPage1.html页面，防止为登录用户获得session
                 }
             } catch (SQLException | ClassNotFoundException e) {
                 e.printStackTrace();

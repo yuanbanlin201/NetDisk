@@ -17,14 +17,14 @@ public class RootAddUsers extends HttpServlet {
             User_Agent_Check uAC = new User_Agent_Check(request.getHeader("user-agent"));
             Referer_Check RC = new Referer_Check(request.getHeader("referer"), "NetDisk/RAU", "NetDisk/RSU");
             if (uAC.check()) {
-                response.sendRedirect("403");
+                response.sendRedirect("403.html");
                 SpiderState = 1;
             } else if (RC.check()) {
-                response.sendRedirect("403");
+                response.sendRedirect("403.html");
                 SpiderState = 1;
             }
         } catch (NullPointerException e) {
-            response.sendRedirect("403");
+            response.sendRedirect("403.html");
             SpiderState = 1;
         }
         if (SpiderState==0 && request.getParameter("username")!=null && request.getParameter("password")!=null && request.getParameter("email")!=null){
@@ -40,7 +40,7 @@ public class RootAddUsers extends HttpServlet {
                                 response.sendRedirect("RAU");
                             } else {
                                 if (username.equals("ROOT") || email.equals("ROOT@ROOT")){ //不允许注册管理员账户
-                                    response.sendRedirect("RootPage");
+                                    response.sendRedirect("RootPage.html");
                                 }else {
                                     int register_state;
                                     try {
@@ -49,10 +49,10 @@ public class RootAddUsers extends HttpServlet {
                                         register_state = try01.write();
                                         switch (register_state) {
                                             //这几个页面不归入ErrorPage1.html页面，防止为登录用户获得session
-                                            case 0 -> response.sendRedirect("ServerError");//TODO 如果出现了系统错误，就将用户返回到普通界面，但是此时仍没有退出管理员账号
-                                            case 1 -> response.sendRedirect("RootEmailExist");
-                                            case 2 -> response.sendRedirect("RootSignUpSuccess");
-                                            case 3 -> response.sendRedirect("RootSignUpFail");
+                                            case 0 -> response.sendRedirect("ServerError.html");//TODO 如果出现了系统错误，就将用户返回到普通界面，但是此时仍没有退出管理员账号
+                                            case 1 -> response.sendRedirect("RootEmailExist.html");
+                                            case 2 -> response.sendRedirect("RootSignUpSuccess.html");
+                                            case 3 -> response.sendRedirect("RootSignUpFail.html");
                                         }
                                     } catch (Exception e) {
                                         PrintWriter out = response.getWriter();

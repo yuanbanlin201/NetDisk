@@ -26,9 +26,9 @@ public class Showfilepage extends ViewBaseServlet {
                         File[] files = file1.listFiles();
                         session.setAttribute("allfiles", files);
                         super.processTemplate("filepage", request, response);
-                    } else response.sendRedirect("403");
-                } else response.sendRedirect("403");
-            } else response.sendRedirect("403");
+                    } else response.sendRedirect("403.html");
+                } else response.sendRedirect("403.html");
+            } else response.sendRedirect("403.html");
         } else response.sendRedirect("login.html");//如果session过期
     }
 }
