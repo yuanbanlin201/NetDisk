@@ -21,7 +21,7 @@ public class DB_Connect {
         String my_url = "jdbc:mysql://127.0.0.1:3306/mypan?useUnicode=true&characterEncoding=utf-8";
         String my_user = "root";
         String my_password = "111111";
-        Class.forName(driver);
+        Class.forName(driver);//加载驱动程序
         return DriverManager.getConnection(my_url, my_user, my_password);
     }
 }

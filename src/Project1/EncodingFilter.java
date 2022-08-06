@@ -32,7 +32,7 @@ public class EncodingFilter implements Filter {
         String[] urls = {"/json",".js",".css",".ico",".jpg",".png",".html"};
         boolean flag = true;
         for (String str : urls) {
-            if (spath.indexOf(str) != -1) {
+            if (spath.contains(str)) {
                 flag =false;
                 break;
             }

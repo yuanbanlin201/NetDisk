@@ -7,7 +7,7 @@ import java.io.File;
 import java.io.IOException;
 
 @MultipartConfig
-public class FileUpload extends HttpServlet {
+public class FileUpload extends HttpServlet {//TODO 一次上传多个文件（前端相关）
     @Override
     public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(false);

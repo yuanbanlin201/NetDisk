@@ -29,7 +29,7 @@ public class FileDownload extends HttpServlet {
                         file0.mkdir();
                         File file1 = new File(realpath + "File/" + session.getAttribute("email") + "/");
                         file1.mkdir(); //创建用户文件夹
-                        if (file1.exists()) {
+                        if (file1.exists()) {//TODO 一次下载多个文件
                             for (String filename : filenames) {  //实际只有一个文件
                                 filename = filename.replace("\\","");
                                 filename = filename.replace("/","");

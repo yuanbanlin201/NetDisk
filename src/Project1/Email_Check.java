@@ -16,7 +16,7 @@ public class Email_Check {
     }
 
     public final boolean check() throws SQLException {
-        //如果数据库中存在该用户，则返回True，如果不存在，则返回Flase
+        //如果数据库中存在该用户，则返回True，如果不存在，则返回False
         Connection conn = null;
         boolean ans = false;
         PreparedStatement ps = null;

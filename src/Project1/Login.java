@@ -24,11 +24,13 @@ public class Login extends HttpServlet {
                 response.sendRedirect("403.html");//user_agent
                 SpiderState = 1;
                 System.out.println("User Agent测试不通过");
-            } else if (RC.check()) {
-                response.sendRedirect("403.html");//referer
-                SpiderState = 1;
-                System.out.println("Referer测试不通过");
             }
+            //TODO
+//            else if (RC.check()) {
+//                response.sendRedirect("403.html");//referer
+//                SpiderState = 1;
+//                System.out.println("Referer测试不通过");
+//            }
         } catch (NullPointerException e) {
             response.sendRedirect("403.html");
             SpiderState = 1;
@@ -58,8 +60,8 @@ public class Login extends HttpServlet {
                     if (check.check()) {
                         //先验证ip是否被封禁
                         String remoteIP = request.getRemoteAddr();
-                        SimpleDateFormat sdf= new SimpleDateFormat("yyyy-MM-dd");
-                        Calendar calendar = Calendar.getInstance();
+                        SimpleDateFormat sdf= new SimpleDateFormat("yyyy-MM-dd");//设置时间格式:eg. 2022-08-01
+                        Calendar calendar = Calendar.getInstance();//获取当前时间
                         int hour = calendar.get(Calendar.HOUR_OF_DAY);
                         int minute = calendar.get(Calendar.MINUTE);
                         int permit = 0;
@@ -71,6 +73,7 @@ public class Login extends HttpServlet {
                         ps.setString(1, remoteIP);
                         rs = ps.executeQuery();
                         if (rs.next()){ //如果确实有ip被封的记录,则比对被封时间
+                            //System.currentTimeMillis()用于获取当前系统时间，以毫秒为单位
                             if (!(rs.getString("YMD")).equals(sdf.format(System.currentTimeMillis()))) {
                                 // 如果ip被封的与当前不是同一天，那么放行，但是不删除ip记录
                                 permit = 1;
@@ -199,6 +202,6 @@ public class Login extends HttpServlet {
                     e.printStackTrace();
                 }
             }
-        } else response.sendError(403);
+        } else response.sendError(403); //TODO 无法在响应提交后调用sendError()
     }
 }
